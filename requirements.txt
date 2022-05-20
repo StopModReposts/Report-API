@@ -1,0 +1,9 @@
+uvicorn
+fastapi
+pydantic
+deta
+jinja2
+aiofiles
+python-multipart
+python-dotenv
+requests

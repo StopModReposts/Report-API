@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Report Gateway | StopModReposts</title>
+    <meta name="description" content="Report sites or false-positives here to StopModReposts here. For advanced usage use our free API.">
+    <link rel="icon" type="image/png" sizes="300x300" href="/assets/img/ZoI2D6yH_400x400.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/assets/img/ZoI2D6yH_400x400.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/assets/img/ZoI2D6yH_400x400.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/assets/img/ZoI2D6yH_400x400.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/assets/img/ZoI2D6yH_400x400.png">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/IBM%20Plex%20Mono.css">
+    <link rel="stylesheet" href="/assets/css/Space%20Mono.css">
+    <link rel="stylesheet" href="/assets/css/Hero-Clean.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+</head>
+
+<body style="padding: 20px;">
+    <section class="py-4 py-xl-5">
+        <div class="container h-100">
+            <div class="row h-100" style="margin-bottom: 25px;">
+                <div class="col-md-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
+                    <div class="d-xl-flex justify-content-xl-center">
+                        <div class="card" style="width: 100%;">
+                            <div class="card-header" style="color: rgb(33, 37, 41);">
+                                <h1 class="text-start mb-0" style="margin-top: 4px;font-size: 20px;">Site Report Form<a href="/"><span class="float-end" style="color: rgb(193,31,32);"><img src="/assets/img/ZoI2D6yH_400x400.png" style="width: 22px;margin-bottom: 4px;margin-right: 5px;margin-left: 5px;">StopModReposts</span></a></h1>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-start card-text">Use this form to report reposting sites to us. We will review each report, although please note that this process can take multiple weeks depending on our availability and report load. For mass reports, contact our team and we'll try to assist you. Thanks for understanding.<br></p>
+                                <h2 class="text-start" style="font-size: 18px;margin-bottom: 3px;color: rgb(193,31,32);">What sites qualify for being listed?</h2>
+                                <p class="text-start card-text">All sites that repost mods (offer downloads on their own domain), actively link to repost download sites, or impersonate the author(s) of mods are qualified to be listed on our blocklist.<br></p>
+                                <hr>
+                                <h2 class="text-start" style="font-size: 18px;margin-bottom: 10px;color: rgb(33,37,41);">Report Form<span class="float-end" style="font-size: 10px;color: rgb(174,174,174);">RSR-01 / API V1</span></h2>
+                                {% autoescape false %} {{ alert_html }} {% endautoescape %}
+                                <form action="/api/v1/formreport" method="post" enctype="multipart/form-data">
+                                    <input class="form-control" type="url" style="margin-bottom: 10px;" name="domain" placeholder="Domain" required>
+                                    <textarea class="form-control" style="margin-bottom: 10px;" placeholder="Describe the site and its content..." name="description" required></textarea>
+                                    <div style="text-align: left!important;">
+                                        <div class="h-captcha" data-sitekey="a8bc19a5-b79a-4a5b-a17b-be2b71d801ca"></div>
+                                    </div>
+                                    <button class="btn btn-primary d-xl-flex justify-content-xl-start" type="submit" style="background: rgb(193,31,32);border-style: none;padding-top: 2px;padding-bottom: 2px;padding-right: 10px;padding-left: 10px;">Submit Report</button>
+                                </form>
+                                <hr>
+                                <p style="color: rgb(184,184,184);font-size: 14px;margin-bottom: 0px;">Copyright © 2022 StopModReposts<br>You agree to stopmodreposts.org's Privacy Policy and Terms of Service by using this site.</p>
+                                <p style="color: rgb(184,184,184);font-size: 14px;margin-bottom: 0px;"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

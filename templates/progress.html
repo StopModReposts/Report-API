@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Report Gateway | StopModReposts</title>
+    <meta name="description" content="Report sites or false-positives here to StopModReposts here. For advanced usage use our free API.">
+    <link rel="icon" type="image/png" sizes="300x300" href="/assets/img/ZoI2D6yH_400x400.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/assets/img/ZoI2D6yH_400x400.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/assets/img/ZoI2D6yH_400x400.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/assets/img/ZoI2D6yH_400x400.png">
+    <link rel="icon" type="image/png" sizes="300x300" href="/assets/img/ZoI2D6yH_400x400.png">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/IBM%20Plex%20Mono.css">
+    <link rel="stylesheet" href="/assets/css/Space%20Mono.css">
+    <link rel="stylesheet" href="/assets/css/Hero-Clean.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+
+<body style="padding: 20px;">
+    <section class="py-4 py-xl-5">
+        <div class="container h-100">
+            <div class="row h-100" style="margin-bottom: 25px;">
+                <div class="col-md-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
+                    <div class="d-xl-flex justify-content-xl-center">
+                        <div class="card" style="width: 100%;">
+                            <div class="card-header" style="color: rgb(33, 37, 41);">
+                                <h1 class="text-start mb-0" style="margin-top: 4px;font-size: 20px;">Submission Progress<a href="/"><span class="float-end" style="color: rgb(193,31,32);"><img src="/assets/img/ZoI2D6yH_400x400.png" style="width: 22px;margin-bottom: 4px;margin-right: 5px;margin-left: 5px;">StopModReposts</span></a></h1>
+                            </div>
+                            <div class="card-body">
+                                <div class="progress" style="background: rgb(247,247,247);border-radius: 5px;border-width: 1px;border-style: none;height: 32px;font-size: 18px;margin-top: 15px;--bs-danger: rgb(193,31,32);--bs-danger-rgb: 193,31,32;">
+                                    <div class="progress-bar bg-danger" aria-valuenow="{{ reviewed_percent }}" aria-valuemin="0" aria-valuemax="100" style="width: 42%;">{{ reviewed_percent }}%</div>
+                                </div>
+                                <p style="color: rgb(193,31,32);font-size: 14px;margin-bottom: 20px;margin-top: 5px;">{{ len_reviewed }} / {{ len_all }} Submissions marked as reviewed in current batch</p>
+                                <hr>
+                                <p class="text-start card-text">This page visualizes the current progress of reviewing the reported sites (False-Positives included).<br></p>
+                                <h2 class="text-start" style="font-size: 18px;margin-bottom: 3px;color: rgb(193,31,32);">Why does the progress go down sometimes?</h2>
+                                <p class="text-start card-text">We add sites to our list in badges. The current progress is the progress for the next batch. When we're ready, the sites marked as reviewed will be added to / removed from our list and the progress will return back to zero.<br></p>
+                                <h2 class="text-start" style="font-size: 18px;margin-bottom: 3px;color: rgb(193,31,32);">Why is it taking so long?</h2>
+                                <p class="text-start card-text">We're a group of volunteers, so we don't always have time to review sites. We also want to reduce the amount of False-Postives, so site reviews can take a bit.<br></p>
+                                <hr>
+                                <p style="color: rgb(184,184,184);font-size: 14px;margin-bottom: 0px;">Copyright © 2022 StopModReposts<br>You agree to stopmodreposts.org's Privacy Policy and Terms of Service by using this site.</p>
+                                <p style="color: rgb(184,184,184);font-size: 14px;margin-bottom: 0px;"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
