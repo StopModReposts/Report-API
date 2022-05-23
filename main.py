@@ -60,6 +60,9 @@ def add_report(domain, description, falsepositive: bool, response):
     except IndexError:
         pass
 
+    blacklist_status = blacklist_db.fetch({"blacklisted": True}).items
+    blacklist_domain = blacklist_db.fetch({"domain": domain}).items
+
     res = requests.get("https://api.stopmodreposts.org/sites.txt")
 
     if domain in res.text:
@@ -75,7 +78,7 @@ def add_report(domain, description, falsepositive: bool, response):
                 "false-positive": falsepositive
             }
         }
-    elif len(blacklist_db.fetch({"domain": domain}).items) != 0:
+    elif len(blacklist_status) != 0 and len(blacklist_domain) != 0:
         response.status_code = status.HTTP_400_BAD_REQUEST
         return response, {
             "detail": "Failed to report - domain blacklisted",
@@ -263,7 +266,13 @@ def get_api_waitlist():
 
 @app.get("/api/v1/blacklist")
 def get_api_blacklist():
-    return {"detail": "Blacklist (WIP)"}
+    res = blacklist_db.fetch({"blacklisted": True}).items
+    final = []
+    for site in res:
+        final.append({
+            "domain": site["domain"]
+        })
+    return final
 
 @app.post("/api/v1/report", status_code=201)
 def post_api_report(response: Response,
@@ -289,11 +298,16 @@ def post_api_report(response: Response,
     """
     Reporting endpoint for reposting sites and false-positives
     """
+    if falsepositive:
+        baseURL = "/forms/falsepositive"
+    else:
+        baseURL = "/forms/report"
+
     if captcha is None:
-        return RedirectResponse(url=f"/forms/report?alert=captcha", status_code=status.HTTP_303_SEE_OTHER)
+        return RedirectResponse(url=f"{baseURL}?alert=captcha", status_code=status.HTTP_303_SEE_OTHER)
     else:
         if verifycaptcha(captcha) is False:
-            return RedirectResponse(url=f"/forms/report?alert=captcha", status_code=status.HTTP_303_SEE_OTHER)
+            return RedirectResponse(url=f"{baseURL}?alert=captcha", status_code=status.HTTP_303_SEE_OTHER)
 
     if domain == None or description == None:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Required form fields missing")
@@ -306,11 +320,11 @@ def post_api_report(response: Response,
     )
 
     if response.status_code == status.HTTP_409_CONFLICT:
-        return RedirectResponse("/forms/report?alert=listed", status_code=status.HTTP_303_SEE_OTHER)
+        return RedirectResponse(f"{baseURL}?alert=listed", status_code=status.HTTP_303_SEE_OTHER)
     elif response.status_code == status.HTTP_400_BAD_REQUEST:
-        return RedirectResponse("/forms/report?alert=blocked", status_code=status.HTTP_303_SEE_OTHER)
+        return RedirectResponse(f"{baseURL}?alert=blocked", status_code=status.HTTP_303_SEE_OTHER)
     else:
-        return RedirectResponse("/forms/report?alert=success", status_code=status.HTTP_303_SEE_OTHER)
+        return RedirectResponse(f"{baseURL}?alert=success", status_code=status.HTTP_303_SEE_OTHER)
 
 
 if __name__ == "__main__":

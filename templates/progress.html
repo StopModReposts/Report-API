@@ -30,7 +30,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="progress" style="background: rgb(247,247,247);border-radius: 5px;border-width: 1px;border-style: none;height: 32px;font-size: 18px;margin-top: 15px;--bs-danger: rgb(193,31,32);--bs-danger-rgb: 193,31,32;">
-                                    <div class="progress-bar bg-danger" aria-valuenow="{{ reviewed_percent }}" aria-valuemin="0" aria-valuemax="100" style="width: 42%;">{{ reviewed_percent }}%</div>
+                                    <div class="progress-bar bg-danger" aria-valuenow="{{ reviewed_percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ reviewed_percent }}%;">{{ reviewed_percent }}%</div>
                                 </div>
                                 <p style="color: rgb(193,31,32);font-size: 14px;margin-bottom: 20px;margin-top: 5px;">{{ len_reviewed }} / {{ len_all }} Submissions marked as reviewed in current batch</p>
                                 <hr>

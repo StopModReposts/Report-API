@@ -38,7 +38,7 @@
                                 <hr>
                                 <h2 class="text-start" style="font-size: 18px;margin-bottom: 10px;color: rgb(33,37,41);">Report False-Positive Form<span class="float-end" style="font-size: 10px;color: rgb(174,174,174);">FPR-01 / API V1</span></h2>
                                 {% autoescape false %} {{ alert_html }} {% endautoescape %}
-                                <form action="/api/v1/formreport" method="post" enctype="multipart/form-data">
+                                <form action="/api/v1/formreport?falsepositive=true" method="post" enctype="multipart/form-data">
                                     <input class="form-control" type="url" style="margin-bottom: 10px;" name="domain" placeholder="Domain" required>
                                     <textarea class="form-control" style="margin-bottom: 10px;" placeholder="Describe the site and its content and why it should be removed from our list..." name="description" required></textarea>
                                     <div style="text-align: left!important;">
