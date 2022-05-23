@@ -18,7 +18,7 @@ import requests
 load_dotenv()
 DETA_TOKEN = os.getenv("DETA_TOKEN")
 
-app = FastAPI()
+app = FastAPI(docs_url=None, redoc_url=None)
 deta = Deta(DETA_TOKEN)
 templates = Jinja2Templates(directory="templates")
 
