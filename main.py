@@ -3,6 +3,7 @@ import re
 import uvicorn
 import json
 from fastapi import FastAPI, Request, Response, status, Form, HTTPException
+from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -325,6 +326,26 @@ def post_api_report(response: Response,
         return RedirectResponse(f"{baseURL}?alert=blocked", status_code=status.HTTP_303_SEE_OTHER)
     else:
         return RedirectResponse(f"{baseURL}?alert=success", status_code=status.HTTP_303_SEE_OTHER)
+
+
+"""
+----------------------------------------------------------
+                RUNNER & ERROR HANDLER
+----------------------------------------------------------
+"""
+
+@app.exception_handler(StarletteHTTPException)
+async def my_custom_exception_handler(request: Request, exc: StarletteHTTPException):
+    """
+    Handles exceptions and redirects to correct error page.
+    """
+
+    if exc.status_code == 404:
+        return templates.TemplateResponse("error.html", {"request": request, "code": "404", "description": "The requested resource couldn't be found."})
+    elif exc.status_code == 500:
+        return templates.TemplateResponse("error.html", {"request": request, "code": "500", "description": exc.detail})
+    else:
+        return templates.TemplateResponse('error.html', {"request": request, "code": "Error", "description": exc.detail})
 
 
 if __name__ == "__main__":
