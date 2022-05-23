@@ -11,3 +11,6 @@
 
 ## What does this site do?
 This site is a reporting tool, a report management tool, a progress viewer, and a custom API combined. The main goal is to make it easier and more unified to report sites to us (switching from multiple reporting sources), to make it easier to manage reports, and to make it possible for developers to make their own bots, extensions, and other applications to report data to us.
+
+## How do I use this API?
+The API has an interface which is available at https://report.stopmodreposts.org/. Possible API requests can be found in our [Report API documentation](https://docs.stopmodreposts.org/).
