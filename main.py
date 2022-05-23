@@ -6,7 +6,7 @@ from fastapi import FastAPI, Request, Response, status, Form, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from typing import Optional
+from typing import Union, Optional
 from pydantic import BaseModel
 from deta import Deta
 from dotenv import load_dotenv
@@ -282,6 +282,7 @@ def post_api_report(response: Response,
 
 @app.post("/api/v1/formreport", status_code=201)
 def post_api_report(response: Response,
+                    falsepositive: Optional[bool] = False,
                     domain: str = Form(None),
                     description: str = Form(None),
                     captcha: str = Form(None, alias="h-captcha-response")):
@@ -300,7 +301,7 @@ def post_api_report(response: Response,
     response, res = add_report(
         domain=domain,
         description=description,
-        falsepositive=False,
+        falsepositive=falsepositive,
         response=response
     )
 
