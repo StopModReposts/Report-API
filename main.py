@@ -166,6 +166,10 @@ def get_root(request: Request):
         "request": request
     })
 
+@app.get("/docs")
+def get_docs():
+    return RedirectResponse(url="https://docs.stopmodreposts.org", status_code=status.HTTP_303_SEE_OTHER)
+
 @app.get("/forms/report")
 def get_form_report(request: Request,
                     alert: Optional[str] = None):
