@@ -66,6 +66,41 @@ def add_report(domain, description, falsepositive: bool, response):
 
     res = requests.get("https://api.stopmodreposts.org/sites.txt")
 
+    if report_type == "false-positive":
+        if domain in res.text:
+            reports_db.put({
+                "domain": domain,
+                "type": report_type,
+                "description": description,
+                "timestamp": str(datetime.now()),
+                "reviewed": False,
+                "comment": ""
+            })
+            return response, {
+                "detail": "Success!",
+                "already_listed": False,
+                "under_review": False,
+                "blacklist": False,
+                "data": {
+                    "domain": domain,
+                    "description": description,
+                    "false-positive": falsepositive
+                }
+            }
+        else:
+            response.status_code = status.HTTP_409_CONFLICT
+            return response, {
+                "detail": "Failed to report - domain not listed",
+                "already_listed": False,
+                "under_review": False,
+                "blacklist": False,
+                "data": {
+                    "domain": domain,
+                    "description": description,
+                    "false-positive": falsepositive
+                }
+            }
+
     if domain in res.text:
         response.status_code = status.HTTP_409_CONFLICT
         return response, {
@@ -223,7 +258,7 @@ def get_form_falsepositive(request: Request,
         alert_html = get_alert_html(
             alert_type="error",
             title="Submission failed",
-            message="Your submission failed because the site you're trying to submit is already listed or under review."
+            message="Your submission failed because the site you're trying to submit is not listed."
         )
     elif alert == "captcha":
         alert_html = get_alert_html(
