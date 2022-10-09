@@ -1,18 +1,18 @@
 import os
-import re
 import uvicorn
 import json
+import requests
+from yarl import URL
 from fastapi import FastAPI, Request, Response, status, Form, HTTPException
 from starlette.exceptions import HTTPException as StarletteHTTPException
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from typing import Union, Optional
+from typing import Optional
 from pydantic import BaseModel
 from deta import Deta
 from dotenv import load_dotenv
 from datetime import datetime
-import requests
 
 
 load_dotenv()
@@ -54,10 +54,8 @@ def add_report(domain, description, falsepositive: bool, response):
 
     try:
         if "http://" in domain or "https://" in domain:
-            x = re.split("https?://(www\.)?([a-zA-Z0-9]+)(\.[a-zA-Z0-9.-]+)", domain)
-            # split returns (for example): ['', None, 'google', '.com', '/test/test2']
-            # or with a subdomain: ['', None, 'consent', '.google.com', '/test/test2']
-            domain = str(x[2]) + str(x[3])
+            domain = URL(domain)
+            domain = domain.host.replace("www.", "")
     except IndexError:
         pass
 
